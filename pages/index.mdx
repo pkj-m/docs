@@ -11,6 +11,42 @@ Welcome to the developer documentation for the Nivara Python SDK.
 - Package: `nivara`
 - Default API base: `https://api.getnivara.com`
 
+## Why Use This SDK
+
+With this API and SDK, you can reliably record token usage and related metadata for every AI request your product makes, then explore, filter, and analyze those metrics in your dashboard. Instead of scattering ad‑hoc `print()` statements or guessing from provider invoices at the end of the month, you get precise, per‑request visibility across all your services and environments.
+
+Put differently: the SDK turns “we think our usage looked like X” into “we know exactly how many input, output, cached, and reasoning tokens we spent, when, and for whom.” That clarity unlocks faster debugging, tighter cost controls, and cleaner reporting.
+
+### What You Get
+
+- Unified usage tracking across apps, jobs, and services — one lightweight client, consistent fields.
+- Accurate per‑request metrics (input, output, cached, reasoning tokens; timestamps; optional user IDs).
+- Background delivery with retries so you don’t block user requests while still ensuring durability.
+- Sampling controls to dial volume up or down without changing your application logic.
+- A dashboard to slice by time range, route, user, or metric name; export data for BI tools.
+- At‑a‑glance health: queue depth, send/failed counters, and last error via `stats()`.
+
+### How It Works
+
+1) You call `emit(...)` (non‑blocking) or `record(...)` (synchronous) with token counts and context.
+
+2) The SDK validates and normalizes your payload (e.g., converts datetimes to RFC3339, drops unknown fields).
+
+3) Events are sent securely to the Metrics API with optional retries and backoff (for 408/429/5xx).
+
+4) Your dashboard ingests and aggregates those events so you can audit spend, track trends, and answer questions like:
+
+- Which endpoints or prompts grew token usage this week?
+- Which customers or workspaces drive the most spend?
+- How often are we hitting timeouts, and which retries are succeeding?
+
+### Typical Use Cases
+
+- Cost tracking and budget alerts tied to exact token usage.
+- A/B tests for prompts or models with usage‑normalized comparisons.
+- SLA reporting for enterprise customers with auditable numbers.
+- Operational debugging when an integration suddenly “gets expensive”.
+
 ## Quick links
 
 - Getting Started: /getting-started
