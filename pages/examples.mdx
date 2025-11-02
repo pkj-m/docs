@@ -5,9 +5,11 @@ description: Practical code examples for using the Nivara SDK.
 
 # Examples
 
+All examples below are copied directly from the real source files in `docs/real-code/examples/`.
+
 ## Background emit with flush and stats
 
-```python
+```python title="real-code/examples/background_emit.py"
 """Background emit with flush and stats.
 
 export NIVARA_API_KEY=ak_live_...
@@ -30,7 +32,7 @@ if __name__ == "__main__":
 
 ## OpenAI one‑liner ➜ Nivara emit
 
-```python
+```python title="real-code/examples/openai_one_liner.py"
 """OpenAI one-liner ➜ Nivara emit.
 
 Prereqs:
@@ -57,7 +59,7 @@ if __name__ == "__main__":
 
 ## Synchronous record
 
-```python
+```python title="real-code/examples/sync_record.py"
 """Synchronous record.
 
 export NIVARA_API_KEY=ak_live_...
@@ -81,4 +83,3 @@ def main() -> int:
 if __name__ == "__main__":
     raise SystemExit(main())
 ```
-

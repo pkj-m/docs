@@ -22,14 +22,34 @@ Welcome to the developer documentation for the Nivara Python SDK.
 - FAQ: /faq
 - Examples: /examples
 
-If you’re just here to install and send a metric:
+If you’re just here to install and send a metric, install the SDK and run this real example script:
 
 ```bash
 python3 -m pip install nivara
 export NIVARA_API_KEY=ak_live_...
-python - << 'PY'
-import nivara
-print(nivara.record(metric='llm.request', input_tokens=1, output_tokens=1))
-PY
 ```
 
+```python title="real-code/examples/sync_record.py"
+"""Synchronous record.
+
+export NIVARA_API_KEY=ak_live_...
+"""
+
+from datetime import datetime, timezone
+import nivara as nv
+
+
+def main() -> int:
+    res = nv.record(
+        metric="llm.request",
+        ts=datetime.now(timezone.utc),
+        input_tokens=5,
+        output_tokens=1,
+    )
+    print(res)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```

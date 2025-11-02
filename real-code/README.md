@@ -18,32 +18,12 @@ Quick links
 
 If you’re just here to install and send a metric:
 
-```bash
+```
 python3 -m pip install nivara
 export NIVARA_API_KEY=ak_live_...
+python - << 'PY'
+import nivara
+print(nivara.record(metric='llm.request', input_tokens=1, output_tokens=1))
+PY
 ```
 
-```python
-"""Synchronous record.
-
-export NIVARA_API_KEY=ak_live_...
-"""
-
-from datetime import datetime, timezone
-import nivara as nv
-
-
-def main() -> int:
-    res = nv.record(
-        metric="llm.request",
-        ts=datetime.now(timezone.utc),
-        input_tokens=5,
-        output_tokens=1,
-    )
-    print(res)
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
-```

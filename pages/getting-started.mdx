@@ -27,21 +27,50 @@ export NIVARA_BASE_URL="https://api.getnivara.com"  # optional (default)
 
 ## Send your first metric (background emit)
 
-```python
+```python title="real-code/examples/background_emit.py"
+"""Background emit with flush and stats.
+
+export NIVARA_API_KEY=ak_live_...
+"""
+
 import nivara as nv
 
-# Non‑blocking enqueue; server sets ts if omitted
-nv.emit(metric='llm.request', user_identifier='user_42', input_tokens=120, output_tokens=30)
-nv.flush(timeout=2.0)
-print('stats:', nv.stats())
+
+def main() -> int:
+    nv.configure(timeout=2.0, retries=1, mode="background")
+    print(nv.emit(metric="llm.request", input_tokens=10, output_tokens=2))
+    print("flushed:", nv.flush(timeout=2.0))
+    print("stats:", nv.stats())
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
 ```
 
 ## Synchronous one‑shot
 
-```python
+```python title="real-code/examples/sync_record.py"
+"""Synchronous record.
+
+export NIVARA_API_KEY=ak_live_...
+"""
+
 from datetime import datetime, timezone
 import nivara as nv
 
-print(nv.record(metric='llm.request', ts=datetime.now(timezone.utc), input_tokens=80, output_tokens=20))
-```
 
+def main() -> int:
+    res = nv.record(
+        metric="llm.request",
+        ts=datetime.now(timezone.utc),
+        input_tokens=5,
+        output_tokens=1,
+    )
+    print(res)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
