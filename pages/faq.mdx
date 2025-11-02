@@ -1,0 +1,35 @@
+---
+title: FAQ
+description: Frequently asked questions about the Nivara SDK.
+---
+
+# FAQ
+
+## Is there a client class?
+
+- The SDK exposes a global client with simple functions (`emit`, `record`, `configure`, …). No separate class is required.
+
+## Does the SDK validate fields?
+
+- Yes. `metric` must be non‑empty; token fields must be non‑negative integers. Unknown fields are omitted.
+
+## How do I add a default end‑user label?
+
+- Call `nivara.set_user("end_user_42")`. Omit `user_identifier` in later calls.
+
+## Can I send metrics synchronously?
+
+- Use `nivara.record(...)`.
+
+## Will it retry automatically?
+
+- Enable with `configure(retries>0)`. Applies to 408, 429, and 5xx.
+
+## What’s the default base URL?
+
+- `https://api.getnivara.com`. You can override via `NIVARA_BASE_URL` or `configure(base_url=...)`.
+
+## Is there an OpenAI helper?
+
+- Yes: `nivara.from_openai(resp)` extracts usage fields for `emit/record`.
+

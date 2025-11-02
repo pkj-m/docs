@@ -1,0 +1,42 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Nivara Python SDK",
+  "colors": {
+    "primary": "#0ea5e9"
+  },
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": ["index"]
+    },
+    {
+      "group": "Getting Started",
+      "pages": [
+        "installation",
+        "getting-started",
+        "configuration"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        "concepts",
+        "examples"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
+        "api-reference"
+      ]
+    },
+    {
+      "group": "Help",
+      "pages": [
+        "troubleshooting",
+        "faq"
+      ]
+    }
+  ]
+}

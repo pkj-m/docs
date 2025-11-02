@@ -1,0 +1,84 @@
+---
+title: Examples
+description: Practical code examples for using the Nivara SDK.
+---
+
+# Examples
+
+## Background emit with flush and stats
+
+```python
+"""Background emit with flush and stats.
+
+export NIVARA_API_KEY=ak_live_...
+"""
+
+import nivara as nv
+
+
+def main() -> int:
+    nv.configure(timeout=2.0, retries=1, mode="background")
+    print(nv.emit(metric="llm.request", input_tokens=10, output_tokens=2))
+    print("flushed:", nv.flush(timeout=2.0))
+    print("stats:", nv.stats())
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
+## OpenAI one‑liner ➜ Nivara emit
+
+```python
+"""OpenAI one-liner ➜ Nivara emit.
+
+Prereqs:
+  export OPENAI_API_KEY=sk-...
+  export NIVARA_API_KEY=ak_live_...
+
+pip install: openai, nivara
+"""
+
+from openai import OpenAI
+import nivara as nv
+
+
+def main() -> int:
+    client = OpenAI()
+    resp = client.responses.create(model="gpt-4o-mini", input="hello")
+    print(nv.emit(metric="llm.request", **nv.from_openai(resp)))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
+## Synchronous record
+
+```python
+"""Synchronous record.
+
+export NIVARA_API_KEY=ak_live_...
+"""
+
+from datetime import datetime, timezone
+import nivara as nv
+
+
+def main() -> int:
+    res = nv.record(
+        metric="llm.request",
+        ts=datetime.now(timezone.utc),
+        input_tokens=5,
+        output_tokens=1,
+    )
+    print(res)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
