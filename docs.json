@@ -5,38 +5,40 @@
   "colors": {
     "primary": "#0ea5e9"
   },
-  "navigation": [
-    {
-      "group": "Overview",
-      "pages": ["index"]
-    },
-    {
-      "group": "Getting Started",
-      "pages": [
-        "installation",
-        "getting-started",
-        "configuration"
-      ]
-    },
-    {
-      "group": "Core Concepts",
-      "pages": [
-        "concepts",
-        "examples"
-      ]
-    },
-    {
-      "group": "Reference",
-      "pages": [
-        "api-reference"
-      ]
-    },
-    {
-      "group": "Help",
-      "pages": [
-        "troubleshooting",
-        "faq"
-      ]
-    }
-  ]
+  "navigation": {
+    "groups": [
+      {
+        "group": "Overview",
+        "pages": ["index"]
+      },
+      {
+        "group": "Getting Started",
+        "pages": [
+          "installation",
+          "getting-started",
+          "configuration"
+        ]
+      },
+      {
+        "group": "Core Concepts",
+        "pages": [
+          "concepts",
+          "examples"
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "api-reference"
+        ]
+      },
+      {
+        "group": "Help",
+        "pages": [
+          "troubleshooting",
+          "faq"
+        ]
+      }
+    ]
+  }
 }
